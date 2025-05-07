@@ -33,8 +33,8 @@ src/tests/
 1. Clone the repository:
 
    ```
-   git clone https://github.com/amandeepmaman/walmart-assignment
-   cd chatbot-website
+   git clone https://github.com/amandeepmaman/front-end-challange-walmart
+   cd front-end-challange-walmart
    ```
 
 2. Install dependencies:
