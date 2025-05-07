@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from "react";
+import { AppProvider, AppContext } from "./context/AppContext";
+import Navbar from "./components/Layout/Navbar";
+import SideMenu from "./components/Layout/SideMenu";
+import Chatbot from "./components/Chatbot";
+import Pages from "./components/Pages";
 
-function App() {
+const AppContent = () => {
+  const { isChatOpen, setIsChatOpen } = useContext(AppContext);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app">
+      <Navbar />
+      <div className="main-content">
+        <SideMenu />
+        <Pages />
+      </div>
+      {!isChatOpen && (
+        <button
+          className="chatbot-toggle"
+          data-testid="chat-toggle-button"
+          onClick={() => setIsChatOpen(true)}
         >
-          Learn React
-        </a>
-      </header>
+          Chat
+        </button>
+      )}
+      {isChatOpen && <Chatbot />}
     </div>
   );
-}
+};
+
+const App = () => {
+  return (
+    <div data-testid="app-container">
+      <AppProvider>
+        <AppContent />
+      </AppProvider>
+    </div>
+  );
+};
 
 export default App;
